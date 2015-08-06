@@ -1,0 +1,23 @@
+---
+driver:
+  name: vagrant
+  provider: vmware_fusion
+  customize:
+      memory: 2048
+
+provisioner:
+  name: chef_solo
+  require_chef_omnibus: 11.14
+
+platforms:
+  - name: macosx-10.10
+    driver:
+      box: macosx-10.10
+
+suites:
+  - name: default
+    run_list:
+      - recipe[macosx_screenresolution_test::default]
+    attributes:
+      macosx_screenresolution:
+        dimensions: 1024x768x32@0
